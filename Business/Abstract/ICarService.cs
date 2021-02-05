@@ -7,6 +7,14 @@ namespace Business.Abstract
 {
     public interface ICarService
     {
+        //Hepsini getir
+
         List<Car> GetAll();
+        //Car Id sine göre getir
+        List<Car> GetCarsByBrandId(int id);
+        //Color Id sine göre getir
+        List<Car> GetCarsByColorId(int id);
+        //Günlük araba ücreti min max aralığı
+        List<Car> GetByDaylyUnitPrice(decimal min, decimal max);
     }
 }
