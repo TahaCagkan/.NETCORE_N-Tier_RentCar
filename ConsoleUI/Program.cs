@@ -10,7 +10,7 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             //ben InMemory çalışıcam demek
-            // CarManager carManager = new CarManager(new InMemoryCarDal());
+            // CarManager carManager = new CarManager(new InMemoryCarDal()); 
             //ben InMemory çalışıcam demek
             CarManager carManager = new CarManager(new EFCarDal());
 
