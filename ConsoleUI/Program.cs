@@ -15,9 +15,13 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EFCarDal());
 
             //foreach (var car in carManager.GetAll())
-            foreach (var car in carManager.GetByDaylyUnitPrice(150, 200))
+            //foreach (var car in carManager.GetByDaylyUnitPrice(150, 200))
+            //{
+            //    Console.WriteLine(car.CarName + " " + car.ModelYear + " " + car.DailyPrice + " " + car.Description);
+            //}
+            foreach (var car in carManager.GetCarDetails())         
             {
-                Console.WriteLine(car.CarName+" "+car.ModelYear+" "+car.DailyPrice+" "+car.Description);
+                Console.WriteLine(car.CarName + " " + car.BrandName + " " + car.ColorName+" " +car.DailyPrice);
             }
         }
     }

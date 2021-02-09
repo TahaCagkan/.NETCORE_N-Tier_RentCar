@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,5 +17,7 @@ namespace Business.Abstract
         List<Car> GetCarsByColorId(int id);
         //Günlük araba ücreti min max aralığı
         List<Car> GetByDaylyUnitPrice(decimal min, decimal max);
+        //istediğimiz özelliklere göre araba listelencektir.
+        List<CarDetailDto> GetCarDetails();
     }
 }
