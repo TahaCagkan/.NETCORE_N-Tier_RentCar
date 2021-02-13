@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,16 @@ namespace Business.Abstract
     {
         //Hepsini getir
 
-        List<Color> GetAll();
-        //Car Id sine göre getir
-        List<Color> GetColorsByColorId(int id);
-        //Günlük araba ücreti min max aralığı
+        IDataResult< List<Color> >GetAll();
+        //Color Id sine göre getir
+        IDataResult<List<Color>> GetColorsByColorId(int id);
+        //id ye göre getir
+        IDataResult<Color>GetById(int id);
+        //Ekle
+        IResult Add(Color entity);
+        //Sil
+        IResult Delete(Color entity);
+        //Güncelle
+        IResult Update(Color entity);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,17 +18,51 @@ namespace Business.Concrete
         {
             _colorDal = colorDal;
         }
-        public List<Color> GetAll()
+        //ekleme
+        public IResult Add(Color entity)
         {
-            //iş kodları
-            return _colorDal.GetAll();
+            _colorDal.Add(entity);
+            return new SuccessResult(Messages.ColorAdded);
+
+        }
+        //silme
+        public IResult Delete(Color entity)
+        {
+            //ilgili id ye göre silincek aracaı marka değişkeni içerisine ata
+            var color = _colorDal.GetById(entity.ColorId);
+            //boş ise
+            if (color == null)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.ColorDeletedError);
+
+            }
+            _colorDal.Delete(color);
+            return new SuccessResult(Messages.ColorDeleted);
+
         }
 
-        public List<Color> GetColorsByColorId(int id)
+        public IDataResult<List<Color>> GetAll()
+        {
+            //iş kodları
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorListed);
+        }
+        //idye göre getirme
+        public IDataResult<Color> GetById(int colorId)
+        {
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == colorId));
+        }
+
+        public IDataResult<List<Color>> GetColorsByColorId(int id)
         {
             //Her bir Color,benim gönderdiğim Id ye eşit ise onu gönder
 
-            return _colorDal.GetAll(c => c.ColorId == id);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(c => c.ColorId == id));
+        }
+        //güncelleme
+        public IResult Update(Color entity)
+        {
+            _colorDal.Update(entity);
+            return new SuccessResult(Messages.ColorUpdate);
         }
     }
 }
