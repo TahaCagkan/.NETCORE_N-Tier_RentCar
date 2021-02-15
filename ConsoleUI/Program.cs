@@ -19,10 +19,10 @@ namespace ConsoleUI
             //{
             //    Console.WriteLine(car.CarName + " " + car.ModelYear + " " + car.DailyPrice + " " + car.Description);
             //}
-            foreach (var car in carManager.GetCarDetails())         
-            {
-                Console.WriteLine(car.CarName + " " + car.BrandName + " " + car.ColorName+" " +car.DailyPrice);
-            }
+            //foreach (var car in carManager.GetCarDetails())         
+            //{
+            //    Console.WriteLine(car.CarName + " " + car.BrandName + " " + car.ColorName+" " +car.DailyPrice);
+            //}
         }
     }
 }

@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Entities.DTOs;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -59,6 +61,24 @@ namespace DataAccess.Concrete.InMemory
             return _car;
         }
 
-     
+        public List<CarDetailDto> GetCarsDetails(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Car GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
