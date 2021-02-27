@@ -11,5 +11,6 @@ namespace Core.Utilities.Results
         bool Succes { get; }
         //Kullanıcıya mesaj döndürme
         string Message { get; }
+        bool Success { get; }
     }
 }

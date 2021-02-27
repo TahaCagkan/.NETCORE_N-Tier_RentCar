@@ -54,5 +54,7 @@ namespace Business.Constants
         public static string RentalUpdateError = "Güncellencek Kiralama Bulunamadı";
 
         public static string MaintenanceTime = "Server Bakım Zamanı";
+
+        public static string FailAddedImageLimit ="5 Resimden fazla olamaz.";
     }
 }
