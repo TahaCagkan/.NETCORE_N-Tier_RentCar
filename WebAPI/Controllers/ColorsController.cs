@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _colorService.GetAll();
-            if (result.Succes)
+            if (result.Success)
             {
                 return Ok(result);
             }
@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         public IActionResult Add(Color color)
         {
             var result = _colorService.Add(color);
-            if (result.Succes)
+            if (result.Success)
             {
                 return Ok(result);
             }

@@ -8,9 +8,8 @@ namespace Core.Utilities.Results
     public interface IResult
     {
         //başarılı biligilendirme
-        bool Succes { get; }
+        bool Success { get; }
         //Kullanıcıya mesaj döndürme
         string Message { get; }
-        bool Success { get; }
     }
 }

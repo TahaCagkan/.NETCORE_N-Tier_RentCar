@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -56,5 +57,14 @@ namespace Business.Constants
         public static string MaintenanceTime = "Server Bakım Zamanı";
 
         public static string FailAddedImageLimit ="5 Resimden fazla olamaz.";
+
+        public static string EmailList = "Email listelendi";
+
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+        public static string SuccessfulLogin = "Sisteme Giriş Başarılı";
+        public static string PasswordError = "Şifre hatalı";
+        public static string UserAlreadyExists = "Var olan bir kullanıcı";
+        public static string UserRegistered= "Kayıt Olundu";
+        public static string AccessTokenCreated = "Token oluşturuldu";
     }
 }

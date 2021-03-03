@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
           var result = _carService.GetAll();
-            if(result.Succes)
+            if(result.Success)
             {
                 return Ok(result);
             }
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
         public IActionResult GetById(int id)
         {
             var result = _carService.GetById(id);
-            if(result.Succes)
+            if(result.Success)
             {
                 return Ok(result);
             }
@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
         public IActionResult Add(Car car)
         {
             var result = _carService.Add(car);
-            if(result.Succes)
+            if(result.Success)
             {
                 return Ok(result);
             }
