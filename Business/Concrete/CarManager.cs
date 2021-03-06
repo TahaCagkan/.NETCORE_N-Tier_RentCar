@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
@@ -35,6 +38,7 @@ namespace Business.Concrete
             //Result : IResult inherit
             return new SuccessResult(Messages.CarAdded);
         }
+
         //Silme
         public IResult Delete(Car entity)
         {
@@ -51,6 +55,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             if(DateTime.Now.Hour == 22)
@@ -67,6 +72,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(x => x.DailyPrice >= min && x.DailyPrice <= max));
         }
         //idye göre getirme
+        [CacheAspect]
+        [PerformanceAspect(5)]
         public IDataResult<Car> GetById(int carId)
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId));
@@ -78,6 +85,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetails());
         }
 
+        [CacheAspect]
         public IDataResult< List<Car>> GetCarsByBrandId(int id)
         {
             //Her bir Brand,benim gönderdiğim Id ye eşit ise onu gönder
@@ -85,6 +93,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(b => b.BrandId == id));
         }
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
             //Her bir Color,benim gönderdiğim Id ye eşit ise onu gönder
@@ -92,10 +101,24 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id));
         }
         //güncelleme
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car entity)
         {
             _carDal.Update(entity);
             return new SuccessResult(Messages.CarUpdate);
+        }
+        [TransactionScopeAspect]
+        public IResult AddTransactionalTest(Car car)
+        {
+            Add(car);
+
+            if(car.DailyPrice < 20)
+            {
+                throw new Exception("20 birim fiyatını yi geçemez!!!!");
+            }
+            Add(car);
+
+            return null;
         }
     }
 }
